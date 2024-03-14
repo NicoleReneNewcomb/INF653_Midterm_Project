@@ -1,0 +1,21 @@
+# Use official PHP runtime with apache as the parent image
+FROM php:8.2-apache
+
+# Install requirec system packages and dependencies
+RUN apt-get update && apt-get install -y \
+    libpq-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+# Set the working directory of container
+WORKDIR /var/www/html
+
+# Copy current directory contents into container working directory
+COPY . /var/www/html
+
+# Install any dependencies PHP application may need
+# Example below if using Composer for dependency management
+# RUN apt-get update && apt-get install -y \
+#     git \
+#     && curl -sS https://getcomposer.org/installer | php --
+# -- install-dir=/usr/local/bin --filename=composer
+
