@@ -11,7 +11,7 @@ services:
       # The build context is set to the current directory (.)
       context: .
        # The Dockerfile used to build image: "DockerFile"
-      dockerfile: DockerFile
+      dockerfile: Dockerfile
 
     # Specifies the ports that are exposed
     ports:
