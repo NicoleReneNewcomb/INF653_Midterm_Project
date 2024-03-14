@@ -22,8 +22,8 @@ This command is used to build an image from a Dockerfile. For example, `docker b
 ### List images with `docker images`
 This command lists all the available images on your machine. Alternative is `docker image ls`.
 
-### Run images with `docker-compose`
-This command is used to run an image: `docker-compose up`. To run in background, use `docker-compose up -d`.
+### Build App/Container from docker-compose.yml file with `docker-compose`
+This command is used to run an image: `docker-compose up`. To run in background, use `docker-compose up -d`. If only wanting to run particular service within docker-compose.yml file, list the service after the command like `docker-compose up service_name`. This command can build images of needed services (if necessary), create and start containers from those images, and also set up the necessary networks and volumes.
 
 
 ## Terminal Commands to Stop/Remove Image/Container
