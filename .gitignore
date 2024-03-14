@@ -1,2 +1,3 @@
-# Ignore .env environment variables file
+# Ignore .env and .htaccess files
 .env
+.htaccess
