@@ -19,3 +19,25 @@ COPY . /var/www/html
 #     && curl -sS https://getcomposer.org/installer | php --
 # -- install-dir=/usr/local/bin --filename=composer
 
+# If needing specific PHP extensions, can install using here.
+# Example below is for installing support for MySQL
+# RUN docker-php-ext-install pdo_pgsql
+
+# Add Postgres SQL support:
+RUN docker-php-ext-install pdo_pgsql
+
+# Copy custom Apache configuration
+COPY apache.conf /etc/apache2/sites-available/000-default.conf
+
+# Enable Apache modules
+RUN a2enmod rewrite
+
+# Set Apache to bind to IP address 0.0.0.0
+# RUN echo "Listen 0.0.0.0:80" >> /etc/apache2/apache2.conf
+
+# Expose port 80 to allow incoming connections to the container
+EXPOSE 80
+
+# By default, Apache is started automatically. You can change
+# or customize the startup command if necessary
+# CMD ["apache2-foreground"]
