@@ -1,0 +1,28 @@
+# Specifies the version of Docker Compose file format
+version: '3'
+
+# Defines the services that make up your app
+services:
+
+  # The php-apache service
+  php-apache:
+    # Used to provide details to build image
+    build:
+      # The build context is set to the current directory (.)
+      context: .
+       # The Dockerfile used to build image: "DockerFile"
+      dockerfile: DockerFile
+
+    # Specifies the ports that are exposed
+    ports:
+      # Maps the host's port 80 to the container's port 80
+      - "80:80"
+
+    # Specifies the directories to be mounted
+    volumes:
+      # Maps the host's current directory to the container's '/var/www/html' directory
+      - .:/var/www/html
+
+    # Specify environment variables, if needed
+    # environment:
+    #   - ENV_VARIABLE=value
