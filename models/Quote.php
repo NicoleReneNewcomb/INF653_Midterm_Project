@@ -184,4 +184,42 @@
 
             return false;
         }
+
+        // Method to check if an author exists by their ID
+        public function authorExists($author_id) {
+
+            // create SQL query
+            $query = 'SELECT * FROM authors WHERE id = ?';
+
+            // prepare statement
+            $stmt = $this->conn->prepare($query);
+
+            // bind id
+            $stmt->bindParam(1, $author_id);
+
+            // execute query
+            $stmt->execute();
+
+            // return true if author exists and false otherwise
+            return $stmt->rowCount() > 0;
+        }
+
+        // Method to check if a category exists by their ID
+        public function categoryExists($category_id) {
+
+            // create SQL query
+            $query = 'SELECT * FROM categories WHERE id = ?';
+
+            // prepare statement
+            $stmt = $this->conn->prepare($query);
+
+            // bind id
+            $stmt->bindParam(1, $category_id);
+
+            // execute query
+            $stmt->execute();
+
+            // return true if category exists and false otherwise
+            return $stmt->rowCount() > 0;
+        }
     }

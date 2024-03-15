@@ -30,6 +30,21 @@
     $quote->author_id = $data->author_id; 
     $quote->category_id = $data->category_id;
 
+    // Check if author_id and category_id exist
+    if (!$quote->authorExists($quote->author_id)) {
+        echo json_encode(
+            array('message' => 'author_id Not Found')
+        );
+        exit;
+    }
+
+    if (!$quote->categoryExists($quote->category_id)) {
+        echo json_encode(
+            array('message' => 'category_id Not Found')
+        );
+        exit;
+    }
+
     // create Quote
     if ($quote->create()) {
         echo json_encode(
@@ -40,6 +55,6 @@
         );
     } else {
         echo json_encode(
-            array('message' => 'quote_id Not Found')
+            array('message' => 'Failed to create quote')
         );
     }
