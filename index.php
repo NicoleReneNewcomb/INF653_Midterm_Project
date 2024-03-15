@@ -2,7 +2,7 @@
 declare(strict_types = 1);
 
 header('Access-Control-Allow-Origin: *');
-header('Content-Type: application/json');
+header('Content-Type: text/html');
 $method = $_SERVER['REQUEST_METHOD'];
 
 if ($method === 'OPTIONS') {
@@ -11,10 +11,12 @@ if ($method === 'OPTIONS') {
     exit();
 }
 
-echo '<pre>';
-print_r(getenv('SITE_URL'));
-echo '<br>';
-print_r($_SERVER);
-echo '</pre>';
-
-phpinfo();
+echo "<style>
+body {
+    background-color: #333;
+    color: whitesmoke;
+}
+</style>
+<body>
+    <h1>Nicole-Rene Newcomb's INF653 Midterm Project</h1>
+</body>";
