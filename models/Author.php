@@ -24,7 +24,7 @@
                 FROM '
                     . $this->table . ' p
                 ORDER BY
-                    p.created_at DESC';
+                    p.id';
             
             // Prepare statement
             $stmt = $this->conn->prepare($query);
@@ -68,9 +68,9 @@
             // create SQL query
             $query = 'INSERT INTO ' . 
                     $this->table . '
-                (title, body, author, category_id, category_name)
+                (author)
                 VALUES
-                (:title, :body, :author, :category_id, :category_name)';
+                (:author)';
 
             // prepare statement
             $stmt = $this->conn->prepare($query);
@@ -99,7 +99,7 @@
             $query = 'UPDATE ' . 
                     $this->table . '
                 SET
-                    author = :author,
+                    author = :author
                 WHERE 
                     id =:id';
             
