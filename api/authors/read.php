@@ -31,7 +31,7 @@
 
             // create individual Author array from extracted field variables
             $author_item = array(
-                'id' => $id,
+                'id' => (int) $id,
                 'author' => $author
             );
 

@@ -2,7 +2,7 @@
     // Headers
     header('Access-Control-Allow-Origin: *');
     header('Content-Type: application/json');
-    header('Access-Control-Allow-Methods: POST');
+    header('Access-Control-Allow-Methods: PUT');
     header('Access-Control-Allow-Headers: Access-Control-Allow-Headers, Content-Type, Access-Control-Allow-Methods, Authorization, X-Requested-With');
 
     include_once '../../config/Database.php';
@@ -19,17 +19,19 @@
     $data = json_decode(file_get_contents("php://input"));
 
     // Return error message and stop if parameters missing
-    if (!isset($data->author)) {
+    if (!isset($data->id) || !isset($data->author)) {
         echo json_encode(
             array('message' => 'Missing Required Parameters')
         );
         exit;
     }
 
+    // Get ID and other fields of Author to update
+    $author->id = $data->id;
     $author->author = $data->author;
 
-    // create Author
-    if ($author->create()) {
+    // update Author
+    if ($author->update()) {
         echo json_encode(
             array('id' => $author->id, 
             'author' => $author->author)
