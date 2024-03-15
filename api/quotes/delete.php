@@ -6,28 +6,28 @@
     header('Access-Control-Allow-Headers: Access-Control-Allow-Headers, Content-Type, Access-Control-Allow-Methods, Authorization, X-Requested-With');
 
     include_once '../../config/Database.php';
-    include_once '../../models/Category.php';
+    include_once '../../models/Quote.php';
 
     // Instantiate DB and connect
     $database = new Database();
     $db = $database->connect();
 
-    // Instantiate Category object
-    $category = new Category($db);
+    // Instantiate Quote object
+    $quote = new Quote($db);
 
-    // get raw Category data
+    // get raw Quote data
     $data = json_decode(file_get_contents("php://input"));
 
-    // Get ID of Category to delete
-    $category->id = $data->id;
+    // Get ID of Quote to delete
+    $quote->id = $data->id;
 
-    // delete Category
-    if ($category->delete()) {
+    // delete Quote
+    if ($quote->delete()) {
         echo json_encode(
-            array('id' => $category->id)
+            array('id' => $quote->id)
         );
     } else {
         echo json_encode(
-            array('message' => 'category_id Not Found')
+            array('message' => 'quote_id Not Found')
         );
     }
