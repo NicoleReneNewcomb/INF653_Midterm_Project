@@ -1,26 +1,26 @@
 <?php
-    class Author {
+    class Category {
 
         // DB Parameters
         private $conn;
-        private $table = 'authors';
+        private $table = 'categories';
 
-        // Author Fields
+        // Category Fields
         public $id;
-        public $author;
+        public $category;
 
         // Database Constructor
         public function __construct($db) {
             $this->conn = $db;
         }
 
-        // Method read() to GET all Authors
+        // Method read() to GET all Categorys
         public function read() {
 
             // create SQL query
             $query = 'SELECT
                     p.id,
-                    p.author
+                    p.category
                 FROM '
                     . $this->table . ' p
                 ORDER BY
@@ -35,12 +35,12 @@
             return $stmt;
         }
 
-        // Method read_single() to GET single Author by ID
+        // Method read_single() to GET single Category by ID
         public function read_single() {
             // create SQL query
             $query = 'SELECT
                     p.id,
-                    p.author
+                    p.category
                 FROM '
                     . $this->table . ' p
                 WHERE
@@ -55,36 +55,36 @@
             // Execute query
             $stmt->execute();
 
-            // set Author object properties
+            // set Category object properties
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
-
+            
             if ($row) {
-                $this->author = $row['author'];
+                $this->category = $row['category'];
             } else {
-                $this->author = null;
+                $this->category = null;
             }
             
             return $stmt;
         }
 
-        // Method create() to POST new Author
+        // Method create() to POST new Category
         public function create() {
 
             // create SQL query
             $query = 'INSERT INTO ' . 
                     $this->table . '
-                (author)
+                (category)
                 VALUES
-                (:author)';
+                (:category)';
 
             // prepare statement
             $stmt = $this->conn->prepare($query);
 
             // clean data
-            $this->author = htmlspecialchars(strip_tags($this->author));
+            $this->category = htmlspecialchars(strip_tags($this->category));
            
             // bind data
-            $stmt->bindParam(':author', $this->author);
+            $stmt->bindParam(':category', $this->category);
             
             // execute query
             if ($stmt->execute()) {
@@ -98,14 +98,14 @@
             return false;
         }
 
-        // Method update() to PUT changes to Author
+        // Method update() to PUT changes to Category
         public function update() {
 
             // create SQL query
             $query = 'UPDATE ' . 
                     $this->table . '
                 SET
-                    author = :author
+                    category = :category
                 WHERE 
                     id =:id';
             
@@ -114,11 +114,11 @@
 
             // clean data
             $this->id = htmlspecialchars(strip_tags($this->id));
-            $this->author = htmlspecialchars(strip_tags($this->author));
+            $this->category = htmlspecialchars(strip_tags($this->category));
             
             // bind data
             $stmt->bindParam(':id', $this->id);
-            $stmt->bindParam(':author', $this->author);
+            $stmt->bindParam(':category', $this->category);
            
             // execute query
             if ($stmt->execute()) {
@@ -131,7 +131,7 @@
             return false;
         }
 
-        // Method delete() to DELETE Author by ID
+        // Method delete() to DELETE Category by ID
         public function delete() {
 
             // create SQL query

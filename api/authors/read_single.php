@@ -16,6 +16,9 @@
     // get Author ID if set
     $author->id = isset($_GET['id']) ? $_GET['id'] : die();
 
+    // Call read_single() to fetch the author
+    $author->read_single();
+
     // Author read_single() query
     if ($author->author) {
         // Create Author array
