@@ -11,11 +11,11 @@
 
         // Gets environment variables
         public function __construct() {
-            $this->host = getenv('HOST');
-            $this->port = getenv('PORT');
-            $this->dbname = getenv('DBNAME');
-            $this->username = getenv('USERNAME');
-            $this->password = getenv('PASSWORD');
+            $this->host = getenv('DB_HOST');
+            $this->port = getenv('DB_PORT');
+            $this->dbname = getenv('DB_DBNAME');
+            $this->username = getenv('DB_USERNAME');
+            $this->password = getenv('DB_PASSWORD');
         }
 
         // DB Connection Method
