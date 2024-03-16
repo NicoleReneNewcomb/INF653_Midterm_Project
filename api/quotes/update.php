@@ -32,7 +32,15 @@
     $quote->author_id = $data->author_id;
     $quote->category_id = $data->category_id;
 
-    // Check if author_id and category_id exist
+    // Check if quote id exists
+    if (!$quote->idExists($quote->id)) {
+        echo json_encode(
+            array('message' => 'No Quotes Found')
+        );
+        exit;
+    }
+
+    // Check if author_id exists
     if (!$quote->authorExists($quote->author_id)) {
         echo json_encode(
             array('message' => 'author_id Not Found')
@@ -40,6 +48,7 @@
         exit;
     }
 
+    // Check if category_id exists
     if (!$quote->categoryExists($quote->category_id)) {
         echo json_encode(
             array('message' => 'category_id Not Found')
