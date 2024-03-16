@@ -11,10 +11,10 @@
     $db = $database->connect();
 
     // Instantiate Quote object
-    $quote = new Quote($db);
+    $quoteObj = new Quote($db);
 
     // Quote read() query
-    $result = $quote->read();
+    $result = $quoteObj->read();
     // count number of Quotes
     $num = $result->rowCount();
 
@@ -32,7 +32,7 @@
             // create individual Quote array from extracted field variables
             $quote_item = array(
                 'id' => (int) $id,
-                'quote' => $quote,
+                'quote' => html_entity_decode($quote),
                 'author' => $author,
                 'category' => $category
             );

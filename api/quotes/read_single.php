@@ -24,13 +24,13 @@
         // Create Quote array
         $quote_arr = array(
             'id' => (int) $quote->id,
-            'quote' => $quote->quote,
+            'quote' => html_entity_decode($quote->quote),
             'author' => $quote->author,
             'category' => $quote->category
         );
 
         // create JSON object
-        print_r(json_encode($quote_arr));
+        echo json_encode($quote_arr);
     }
     else {
         echo json_encode(
