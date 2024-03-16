@@ -222,4 +222,22 @@
             // return true if category exists and false otherwise
             return $stmt->rowCount() > 0;
         }
+
+        public function idExists($id) {
+
+            // create SQL query
+            $query = 'SELECT * FROM quotes WHERE id = ?';
+
+            // prepare statement
+            $stmt = $this->conn->prepare($query);
+
+            // bind id
+            $stmt->bindParam(1, $id);
+
+            // execute query
+            $stmt->execute();
+
+            // return true if category exists and false otherwise
+            return $stmt->rowCount() > 0;
+        }
     }
